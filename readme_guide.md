@@ -142,15 +142,83 @@ npm run dev
 ## 8. Vercel 배포
 
 ### 8.1 Vercel 프로젝트 설정
-1. Vercel 대시보드에서 "Import Project" 클릭
-2. GitHub 리포지토리 연결
-3. 환경 변수 설정 (Supabase URL 및 키 추가)
-4. "Deploy" 클릭
+1. **Vercel 대시보드 접속**
+   - [Vercel 웹사이트](https://vercel.com)에 접속하여 로그인합니다.
+   - 대시보드로 이동하면 우측 상단에 "Add New..." 버튼이 있습니다.
+   - 드롭다운에서 "Project"를 선택합니다.
+
+2. **GitHub 리포지토리 연결**
+   - "Import Git Repository" 섹션에서 GitHub 계정을 연결하거나 이미 연결된 계정을 사용합니다.
+   - 귀하의 GitHub 리포지토리 목록이 표시됩니다.
+   - 배포하려는 Next.js 프로젝트가 있는 리포지토리를 선택합니다.
+   - "Import" 버튼을 클릭합니다.
+
+3. **프로젝트 설정 구성**
+   - 프로젝트 이름 확인: 기본값은 리포지토리 이름입니다.
+   - 프레임워크 설정 확인: Next.js 프로젝트로 자동 인식되어야 합니다.
+   - 루트 디렉토리 설정: 만약 프로젝트가 하위 폴더인 `/my-app`에 있다면, 이를 지정합니다.
+   - 빌드 설정 확인: Next.js의 기본값이 자동으로 적용됩니다.
+
+4. **환경 변수 설정**
+   - "Environment Variables" 섹션에서 "Add Variable" 버튼 클릭
+   - Supabase 연결 정보 추가:
+     ```
+     NEXT_PUBLIC_SUPABASE_URL=귀하의_프로젝트_URL
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=귀하의_공개_ANON_키
+     ```
+   - 각각의 키와 값을 별도로 추가합니다.
+
+5. **"Deploy" 클릭**
+   - 모든 설정을 완료한 후 "Deploy" 버튼을 클릭합니다.
+   - Vercel이 자동으로 프로젝트를 빌드하고 배포합니다.
+   - 빌드 로그를 실시간으로 확인할 수 있습니다.
+
+6. **배포 완료 및 확인**
+   - 배포가 완료되면 "Congratulations!" 메시지와 함께 프로젝트 URL이 표시됩니다.
+   - 제공된 URL로 접속하여 사이트가 제대로 배포되었는지 확인합니다.
+   - 프로젝트 대시보드에서 배포 상태, 분석, 설정 등을 관리할 수 있습니다.
 
 ### 8.2 배포 설정 최적화
-1. 자동 배포 설정: GitHub 리포지토리에 푸시할 때마다 자동 배포
-2. 커스텀 도메인 설정 (필요한 경우)
-3. 환경 변수 관리
+
+#### 1. 프로젝트 설정 관리
+- Vercel 프로젝트 대시보드에서 `Settings` 탭으로 이동하여 다양한 설정을 관리할 수 있습니다.
+- `Settings > General` 섹션에서 프로젝트 이름, 빌드 및 개발 설정, 프레임워크 사전 설정 등을 변경할 수 있습니다.
+- `Settings > General > Root Directory` 설정: 만약 프로젝트가 하위 폴더(예: `/my-app`)에 있다면, 이를 정확히 지정합니다.
+
+#### 2. Git 연동 설정
+- `Settings > Git` 섹션에서 Git 연동 설정을 확인합니다.
+- `Settings > Git > Production Branch` 설정에서 프로덕션 브랜치(일반적으로 `main` 또는 `master`)가 올바르게 설정되어 있는지 확인합니다.
+- `Settings > Git > Auto-Deploy` 설정이 활성화되어 있는지 확인합니다. 이 설정은 코드 변경 시 자동으로 배포를 트리거합니다.
+- 필요한 경우 `Settings > Git > Branch & Directory Filters`에서 특정 브랜치나 경로에 대한 배포 필터를 설정할 수 있습니다.
+
+#### 3. 도메인 설정
+- `Settings > Domains` 섹션에서 커스텀 도메인을 관리합니다.
+- `Settings > Domains > Add` 버튼을 클릭하여 새 도메인을 추가합니다.
+- 도메인 제공업체에서 DNS 설정을 업데이트하는 방법:
+  - A 레코드: 도메인 루트를 Vercel의 IP 주소로 지정
+  - CNAME 레코드: 서브도메인(예: www)을 Vercel 배포 URL로 지정
+- `Settings > Domains > [도메인 선택] > SSL` 섹션에서 HTTPS 설정을 확인할 수 있습니다. SSL 인증서는 자동 발급됩니다.
+
+#### 4. 환경별 설정
+- `Settings > Environment Variables` 섹션에서 환경별 변수를 설정합니다.
+- `Settings > Environment Variables > Add New` 버튼을 클릭하고 환경별(Production, Preview, Development)로 다른 값을 지정할 수 있습니다.
+- `Settings > Environment Variables > [변수 선택] > Encrypt` 옵션을 통해 민감한 정보를 암호화하여 저장할 수 있으며, 팀원들이 값을 볼 수 없게 설정할 수 있습니다.
+
+#### 5. 성능 모니터링
+- `Analytics` 탭에서 웹 애널리틱스 및 성능 지표를 확인합니다.
+- `Analytics > Speed Insights`를 통해 Core Web Vitals와 같은 성능 지표를 모니터링합니다.
+- `Analytics > Web Analytics`에서 방문자 통계 및 사용 패턴을 분석할 수 있습니다.
+
+#### 6. 협업 설정
+- `Settings > Members`에서 팀원들을 초대하고 권한을 설정합니다.
+- `Settings > Comments > Enable Comments` 옵션을 활성화하여 배포에 대한 피드백을 공유할 수 있습니다.
+- `Settings > Deployment Protection`에서 특정 배포에 대한 접근 제한 설정이 가능합니다.
+
+#### 7. 배포 웹훅 설정
+- `Settings > Webhooks` 섹션에서 웹훅을 설정합니다.
+- `Settings > Webhooks > Create Webhook` 버튼을 클릭하여 새 웹훅을 추가합니다.
+- 배포 상태가 변경될 때 외부 서비스에 알림을 보내도록 설정할 수 있습니다.
+- `Settings > Webhooks > [웹훅 선택] > Events` 섹션에서 빌드 성공/실패, 도메인 구성 변경 등의 이벤트에 대한 알림을 설정합니다.
 
 ## 9. 추가 기능 및 확장
 
