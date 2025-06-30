@@ -1,13 +1,8 @@
 import Image from "next/image";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* 헤더 컴포넌트 */}
-      <Header />
-
+    <div className="flex flex-col">
       {/* 메인 히어로 섹션 */}
       <section className="bg-gradient-to-b from-blue-500 to-blue-700 text-white py-20">
         <div className="container mx-auto text-center px-4">
@@ -106,9 +101,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* 푸터 컴포넌트 */}
-      <Footer />
     </div>
   );
 }

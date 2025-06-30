@@ -1,13 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
 export default function About() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
+    <div className="flex flex-col">
       {/* 소개 페이지 메인 배너 */}
       <div className="bg-blue-600 text-white py-20">
         <div className="container mx-auto text-center px-4">
@@ -175,8 +171,6 @@ export default function About() {
           </a>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 } 

@@ -1,7 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
 export default function Products() {
   // 제품 데이터
@@ -69,9 +67,7 @@ export default function Products() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
+    <div className="flex flex-col">
       {/* 제품 소개 배너 */}
       <div className="bg-blue-600 text-white py-20">
         <div className="container mx-auto text-center px-4">
@@ -259,8 +255,6 @@ export default function Products() {
           </a>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 } 
