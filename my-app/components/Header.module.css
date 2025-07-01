@@ -1,0 +1,362 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0;
+}
+
+.headerScrolled {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.headerDefault {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header:hover, .headerActive {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  height: 60px;
+}
+
+/* 로고 스타일 */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin-right: auto;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoTitle {
+  margin: 0;
+}
+
+.textLogo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.textLogoMain {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-family: 'Montserrat', sans-serif, 'Apple SD Gothic Neo', 'Noto Sans KR';
+  position: relative;
+  padding: 0 2px;
+  color: #000000;
+  background: #000000;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 1px 1px rgba(255, 255, 255, 0.2),
+    0 -1px 1px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2));
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.textLogoMain::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.textLogoMain::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.logoWrapper:hover .textLogoMain {
+  transform: translateZ(5px);
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.logoWrapper:hover .textLogoMain::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 네비게이션 스타일 */
+.nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: block;
+  }
+  
+  .headerInner {
+    justify-content: flex-start;
+  }
+  
+  .navList {
+    margin-left: auto;
+  }
+}
+
+.navList {
+  display: flex;
+  gap: 2rem;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  display: inline-block;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navLink:hover {
+  color: #2563eb !important;
+  text-shadow: 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+.navLink::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+}
+
+.navItem:hover .navLink::after,
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdownMenu {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  margin-top: 4px;
+  z-index: 50;
+  width: 14rem;
+  transition: all 0.3s ease;
+  transform: scale(0.95) translateY(-10px);
+  transform-origin: top;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.navItem:hover .dropdownMenu {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.dropdownContent {
+  padding: 1rem;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(239, 246, 255, 0.7);
+  color: #2563eb;
+}
+
+.dropdownIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+/* 액션 버튼 스타일 */
+.actionButton {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .actionButton {
+    display: block;
+  }
+}
+
+.ctaButton {
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(to right, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 모바일 메뉴 버튼 스타일 */
+.mobileMenuButton {
+  display: block;
+  padding: 0.5rem;
+  color: #4b5563;
+  transition: color 0.3s;
+  z-index: 2;
+}
+
+.mobileMenuButton:hover {
+  color: #2563eb;
+}
+
+@media (min-width: 768px) {
+  .mobileMenuButton {
+    display: none;
+  }
+}
+
+/* 모바일 메뉴 스타일 */
+.mobileMenu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 40;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mobileMenuVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobileMenuHidden {
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobileMenuContainer {
+  padding: 1rem;
+}
+
+.mobileNav {
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobileMenuSection {
+  padding: 1rem 0;
+}
+
+.mobileMenuTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileNavItem {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.mobileNavItem:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.mobileCta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(to right, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+
+.mobileCta:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+} 

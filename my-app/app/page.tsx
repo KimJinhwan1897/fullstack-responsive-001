@@ -1,24 +1,11 @@
 import Image from "next/image";
+import HeroSection from "../components/HeroSection";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* 메인 히어로 섹션 */}
-      <section className="bg-gradient-to-b from-blue-500 to-blue-700 text-white py-20">
-        <div className="container mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold mb-6">풀스택 반응형 웹사이트</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Next.js, Tailwind CSS, Supabase를 활용한 모던 웹 개발 솔루션으로 
-            빠르고 안정적인 웹사이트를 구축해보세요.
-          </p>
-          <a 
-            href="#contact" 
-            className="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
-          >
-            시작하기
-          </a>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* 소개 섹션 */}
       <section id="about" className="py-16 bg-gray-50">
