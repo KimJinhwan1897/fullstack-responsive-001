@@ -1,9 +1,23 @@
+'use client';
+
+import { useEffect } from "react";
 import Image from "next/image";
 import HeroSection from "../components/HeroSection";
+import IntroAnimation from "../components/IntroAnimation";
 
 export default function Home() {
+  console.log("Home page rendered");
+  
+  // 페이지 로드 시 스크롤을 맨 위로 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="flex flex-col">
+      {/* 인트로 애니메이션 */}
+      <IntroAnimation />
+      
       {/* 메인 히어로 섹션 */}
       <HeroSection />
 

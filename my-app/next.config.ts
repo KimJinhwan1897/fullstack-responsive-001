@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // 스크롤 복원 기능 비활성화
+  experimental: {
+    scrollRestoration: false
+  }
 };
 
 export default nextConfig;

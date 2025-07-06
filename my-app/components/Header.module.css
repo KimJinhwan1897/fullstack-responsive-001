@@ -65,6 +65,16 @@
   margin: 0;
 }
 
+.logoImage {
+  display: block;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logoWrapper:hover .logoImage {
+  transform: scale(1.03);
+}
+
 .textLogo {
   position: relative;
   display: flex;

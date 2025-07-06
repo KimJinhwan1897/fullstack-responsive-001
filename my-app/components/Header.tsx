@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -41,6 +42,9 @@ export default function Header() {
     };
   }, [scrolled]);
 
+  // 현재 상태에 따라 적절한 로고 선택
+  const logoSrc = "/images/header_logo_none.png";
+
   return (
     <header 
       className={`${styles.header} ${scrolled ? styles.headerScrolled : styles.headerDefault} ${isHovered || isScrolling ? styles.headerActive : ''}`}
@@ -53,9 +57,14 @@ export default function Header() {
           <div className={styles.logoContainer}>
             <h1 className={styles.logoTitle}>
               <Link href="/" className={styles.logoWrapper}>
-                <div className={styles.textLogo}>
-                  <span className={styles.textLogoMain}>OTS TECHNOLOGY</span>
-                </div>
+                <Image 
+                  src={logoSrc}
+                  alt="OTS TECHNOLOGY" 
+                  width={180} 
+                  height={40} 
+                  className={styles.logoImage}
+                  priority
+                />
               </Link>
             </h1>
           </div>
