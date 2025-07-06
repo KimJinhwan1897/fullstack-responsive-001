@@ -24,9 +24,10 @@ export default function ParticlesBackground() {
         options={{
           fullScreen: false,
           fpsLimit: 60, // FPS 제한 낮춤
+          autoPlay: true, // 자동 시작 활성화
           particles: {
             number: { 
-              value: 30, // 파티클 수 대폭 감소
+              value: 80, // 파티클 수 증가
               density: { enable: true, value_area: 800 } 
             },
             color: { 
@@ -58,7 +59,7 @@ export default function ParticlesBackground() {
               },
             },
             line_linked: {
-              enable: false, // 연결선 비활성화
+              enable: true, // 연결선 활성화
               distance: 150,
               color: "#ffffff",
               opacity: 0.3,
@@ -116,6 +117,8 @@ export default function ParticlesBackground() {
           },
           detectRetina: false, // 레티나 감지 비활성화
           smooth: true, // 부드러운 애니메이션 활성화
+          pauseOnBlur: false, // 페이지가 포커스를 잃어도 계속 실행
+          pauseOnOutsideViewport: false, // 뷰포트 밖에서도 계속 실행
         }}
       />
     </div>
