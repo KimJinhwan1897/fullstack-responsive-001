@@ -1,34 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import './globals.css'
+import { Metadata } from 'next'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata: Metadata = {
-  title: "OTS TECHNOLOGY",
-  description: "OTS TECHNOLOGY 계측 솔루션 전문 기업",
-};
+  title: 'OTS TECHNOLOGY',
+  description: 'OTS TECHNOLOGY 계측 솔루션 전문 기업',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="ko">
+      <body>
+        <ScrollToTop />
         <Header />
         <main>
           {children}
@@ -36,5 +25,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  );
+  )
 }
