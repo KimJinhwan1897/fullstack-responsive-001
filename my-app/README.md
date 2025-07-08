@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OTS Technology 웹사이트
 
-## Getting Started
+이 프로젝트는 Next.js, React, 그리고 CSS Modules를 사용하여 구축된 OTS Technology 회사 웹사이트입니다.
 
-First, run the development server:
+## 필요한 이미지 목록
+
+컴포넌트가 제대로 작동하려면 다음 경로에 이미지 파일을 준비해야 합니다:
+
+### 아이콘 이미지
+- `/public/images/icon-default.png` (기본 아이콘)
+- `/public/images/icon-cloud.png` (클라우드 아이콘)
+- `/public/images/icon-ai.png` (AI 아이콘)
+- `/public/images/icon-observe.png` (옵저버빌리티 아이콘)
+- `/public/images/icon-infra.png` (인프라 아이콘)
+
+### 카테고리 이미지
+- `/public/images/category-default.jpg` (기본 카테고리 이미지)
+- `/public/images/category-cloud.jpg` (클라우드 카테고리 이미지)
+- `/public/images/category-ai.jpg` (AI 카테고리 이미지)
+- `/public/images/category-observability.jpg` (옵저버빌리티 카테고리 이미지)
+- `/public/images/category-infrastructure.jpg` (인프라 카테고리 이미지)
+
+### 회사 정보 이미지
+- `/public/images/company-about.jpg` (회사 소개 이미지)
+- `/public/images/company-about-placeholder.jpg` (회사 소개 대체 이미지)
+
+### 프로젝트 이미지
+- `/public/images/project-placeholder.jpg` (프로젝트 대체 이미지)
+- `/public/images/project-cloud.jpg` (클라우드 프로젝트 이미지)
+- `/public/images/project-monitoring.jpg` (모니터링 프로젝트 이미지)
+- `/public/images/project-ai.jpg` (AI 프로젝트 이미지)
+- `/public/images/project-infrastructure.jpg` (인프라 프로젝트 이미지)
+- `/public/images/project-security.jpg` (보안 프로젝트 이미지)
+- `/public/images/project-visualization.jpg` (시각화 프로젝트 이미지)
+
+### 파트너사 로고 이미지
+- `/public/images/partner-placeholder.png` (파트너 대체 로고)
+- `/public/images/partner-samsung.png` (삼성전자 로고)
+- `/public/images/partner-lg.png` (LG전자 로고)
+- `/public/images/partner-sk.png` (SK하이닉스 로고)
+- `/public/images/partner-hyundai.png` (현대자동차 로고)
+- `/public/images/partner-kt.png` (KT 로고)
+- `/public/images/partner-posco.png` (POSCO 로고)
+- `/public/images/partner-naver.png` (네이버 로고)
+- `/public/images/partner-kakao.png` (카카오 로고)
+
+## 시작하기
 
 ```bash
 npm run dev
-# or
+# 또는
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+브라우저에서 [http://localhost:3000](http://localhost:3000)로 접속하여 결과를 확인할 수 있습니다.

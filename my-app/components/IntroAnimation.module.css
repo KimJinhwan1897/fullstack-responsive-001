@@ -44,7 +44,6 @@
   font-weight: bold;
   color: #3B82F6;
   margin-bottom: 1rem;
-  animation: slideUp 1.5s ease forwards;
 }
 
 .graphic-elements {
@@ -72,6 +71,8 @@
   font-weight: bold;
   text-align: center;
   line-height: 1.5;
+  margin-top: 30px;
+  white-space: nowrap;
 }
 
 @keyframes fadeIn {
@@ -132,15 +133,28 @@
 
 .logo-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: introAnimation 2s ease forwards;
 }
 
 .logo-image {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInLogo 1.8s ease forwards;
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes introAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInLogo {

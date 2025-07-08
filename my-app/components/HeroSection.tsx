@@ -265,14 +265,14 @@ const HeroSection = () => {
           if (!isVisible) return null;
           
           return (
+          <div 
+            key={slide.id} 
+            className={`${styles.slide} ${
+              currentSlide === index ? styles.slideVisible : styles.slideHidden
+            }`}
+          >
+            {/* 배경 이미지 적용 */}
             <div 
-              key={slide.id} 
-              className={`${styles.slide} ${
-                currentSlide === index ? styles.slideVisible : styles.slideHidden
-              }`}
-            >
-              {/* 배경 이미지 적용 */}
-              <div 
                 className={`${styles.imageBackground} ${
                   currentSlide === index && !isInitialRender ? styles.imageAnimated : ''
                 }`}
@@ -290,29 +290,29 @@ const HeroSection = () => {
                   height: '100%',
                   objectFit: 'cover'
                 }}
-              >
-                <div className={styles.overlay}></div>
-              </div>
-              
-              {/* 슬라이드 텍스트 */}
-              <div className={styles.contentWrapper}>
-                <div className="container mx-auto px-4 md:px-10">
-                  <div className={styles.contentContainer}>
-                    <p className={styles.subtitle}>{slide.subtitle}</p>
-                    <h2 className={styles.title}>{slide.title}</h2>
-                    <p className={styles.description}>
-                      {slide.description}
-                    </p>
-                    <Link 
-                      href={slide.link}
-                      className={styles.button}
-                    >
-                      더 알아보기
-                    </Link>
-                  </div>
+            >
+              <div className={styles.overlay}></div>
+            </div>
+            
+            {/* 슬라이드 텍스트 */}
+            <div className={styles.contentWrapper}>
+              <div className="container mx-auto px-4 md:px-10">
+                <div className={styles.contentContainer}>
+                  <p className={styles.subtitle}>{slide.subtitle}</p>
+                  <h2 className={styles.title}>{slide.title}</h2>
+                  <p className={styles.description}>
+                    {slide.description}
+                  </p>
+                  <Link 
+                    href={slide.link}
+                    className={styles.button}
+                  >
+                    더 알아보기
+                  </Link>
                 </div>
               </div>
             </div>
+          </div>
           );
         })}
       </div>

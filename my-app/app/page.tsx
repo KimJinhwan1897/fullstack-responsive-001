@@ -1,9 +1,16 @@
 'use client';
 
 import { useEffect } from "react";
-import Image from "next/image";
-import HeroSection from "../components/HeroSection";
 import IntroAnimation from "../components/IntroAnimation";
+import HeroSection from "../components/HeroSection";
+import FeatureShowcase from "../components/FeatureShowcase";
+import CategorySlider from "../components/CategorySlider";
+import AboutSection from "../components/AboutSection";
+import ProjectsSection from "../components/ProjectsSection";
+import PartnersMarquee from "../components/PartnersMarquee";
+import CategoryCards3D from "../components/CategoryCards3D";
+import CategoryHexagon from "../components/CategoryHexagon";
+import CategoryFiltered from "../components/CategoryFiltered";
 
 export default function Home() {
   console.log("Home page rendered");
@@ -20,6 +27,30 @@ export default function Home() {
       
       {/* 메인 히어로 섹션 */}
       <HeroSection />
+
+      {/* 핵심 서비스 소개 */}
+      <FeatureShowcase />
+      
+      {/* 제품 카테고리 슬라이더 */}
+      <CategorySlider />
+      
+      {/* 제품 카테고리 - 3D 카드 디자인 */}
+      <CategoryCards3D />
+      
+      {/* 제품 카테고리 - 육각형 그리드 디자인 */}
+      <CategoryHexagon />
+      
+      {/* 제품 카테고리 - 필터링 가능한 디자인 */}
+      <CategoryFiltered />
+      
+      {/* 회사 소개 및 통계 섹션 */}
+      <AboutSection />
+      
+      {/* 최근 프로젝트 갤러리 */}
+      <ProjectsSection />
+      
+      {/* 파트너사 로고 섹션 - 마퀴 스타일 */}
+      <PartnersMarquee />
 
       {/* 소개 섹션 */}
       <section id="about" className="py-16 bg-gray-50">

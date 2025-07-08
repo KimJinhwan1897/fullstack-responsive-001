@@ -9,7 +9,8 @@ export default function IntroAnimation() {
   const pathname = usePathname();
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isFirstSceneActive, setIsFirstSceneActive] = useState<boolean>(true);
-  const [isSecondSceneActive, setIsSecondSceneActive] = useState<boolean>(false);
+  // 두 번째 씬 상태 (주석 처리)
+  // const [isSecondSceneActive, setIsSecondSceneActive] = useState<boolean>(false);
   const [shouldRender, setShouldRender] = useState<boolean>(false);
   const [debugMode, setDebugMode] = useState<boolean>(false);
 
@@ -19,7 +20,7 @@ export default function IntroAnimation() {
       console.log('Debug mode active, showing intro');
       setIsActive(true);
       setIsFirstSceneActive(true);
-      setIsSecondSceneActive(false);
+      // setIsSecondSceneActive(false); // 주석 처리
       setShouldRender(true);
       return;
     }
@@ -39,12 +40,12 @@ export default function IntroAnimation() {
       
       console.log('Checking for intro cookie:', hasIntroCookie ? 'Found' : 'Not found');
       
-      if (hasIntroCookie) {
-        // 쿠키가 있으면 인트로를 렌더링하지 않음
-        console.log('Intro cookie found, not rendering intro');
-        setShouldRender(false);
-        return;
-      }
+      // if (hasIntroCookie) {
+      //   // 쿠키가 있으면 인트로를 렌더링하지 않음
+      //   console.log('Intro cookie found, not rendering intro');
+      //   setShouldRender(false);
+      //   return;
+      // }
       
       // 쿠키가 없으면 인트로 표시 및 쿠키 설정
       console.log('First visit, showing intro animation');
@@ -54,6 +55,20 @@ export default function IntroAnimation() {
       // 인트로 표시 여부를 쿠키에 저장 (24시간 유효)
       document.cookie = 'intro=done; path=/; max-age=86400';
       
+      // 첫 번째 씬만 보여주고 인트로 종료 (두 번째 씬으로 전환하지 않음)
+      const timer = setTimeout(() => {
+        console.log('Ending intro animation');
+        setIsActive(false);
+        
+        // 애니메이션 종료 후 컴포넌트 제거
+        setTimeout(() => {
+          console.log('Removing intro from DOM');
+          setShouldRender(false);
+        }, 1500); // CSS 트랜지션 시간만큼 대기
+      }, 2500);
+      
+      // 주석 처리된 두 번째 씬으로의 전환 및 종료 타이머
+      /*
       // 첫 번째 씬에서 두 번째 씬으로 전환
       const timer1 = setTimeout(() => {
         console.log('Transitioning to second scene');
@@ -76,6 +91,11 @@ export default function IntroAnimation() {
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
+      };
+      */
+      
+      return () => {
+        clearTimeout(timer);
       };
     }
   }, [pathname, debugMode]);
@@ -137,21 +157,24 @@ export default function IntroAnimation() {
         {isFirstSceneActive && (
           <div className={`${styles.scene} ${styles['scene-first']}`}>
             <div className={styles['logo-container']}>
-              <div className={styles['str-logo']}>
-                <Image
-                  src="/images/intro_logo_1.png"
-                  alt="OTS TECHNOLOGY"
-                  width={300}
-                  height={150}
-                  priority
-                  className={styles['logo-image']}
-                />
+              <Image
+                src="/images/intro_logo_1.png"
+                alt="OTS TECHNOLOGY"
+                width={300}
+                height={150}
+                priority
+                className={styles['logo-image']}
+              />
+              <div className={styles['welcome-text']}>
+                가치있는 솔루션<br />
+                함께 하겠습니다
               </div>
             </div>
           </div>
         )}
 
-        {/* 두 번째 씬 - 환영 메시지 */}
+        {/* 두 번째 씬 - 환영 메시지 (주석 처리) */}
+        {/*
         {isSecondSceneActive && (
           <div className={`${styles.scene} ${styles['scene-second']}`}>
             <div className={styles['welcome-text']}>
@@ -160,6 +183,7 @@ export default function IntroAnimation() {
             </div>
           </div>
         )}
+        */}
       </div>
     </>
   );

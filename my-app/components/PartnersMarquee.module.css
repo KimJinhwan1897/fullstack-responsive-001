@@ -1,0 +1,172 @@
+.partnersMarqueeSection {
+  padding: 6rem 0;
+  background-color: #0f172a;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.headerLine {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #4f46e5, #8b5cf6);
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+}
+
+.sectionTitle {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.marqueeContainer {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marqueeGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100%;
+  animation: marquee 40s linear infinite;
+}
+
+.reverse .marqueeGroup {
+  animation: marqueeReverse 35s linear infinite;
+}
+
+.paused .marqueeGroup {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marqueeReverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.partnerItem {
+  padding: 0 2rem;
+  transition: transform 0.3s ease;
+}
+
+.partnerItem:hover {
+  transform: scale(1.1);
+}
+
+.partnerLogo {
+  height: 100px;
+  display: block;
+  filter: brightness(0.9) contrast(1.1);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.partnerItem:hover .partnerLogo {
+  filter: brightness(1.05) contrast(1.1);
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 배경 요소 스타일 */
+.bgElement1,
+.bgElement2,
+.bgElement3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.bgElement1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #4f46e5 0%, transparent 70%);
+  top: -250px;
+  left: 10%;
+}
+
+.bgElement2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+  bottom: -300px;
+  right: 10%;
+}
+
+.bgElement3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .partnerLogo {
+    height: 80px;
+  }
+  
+  .partnerItem {
+    padding: 0 1rem;
+  }
+} 

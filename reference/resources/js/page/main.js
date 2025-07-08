@@ -3,7 +3,7 @@ $(document).ready(function() {
 	//쿠키 정보 확인	
     var intro = getCookie('intro');
     var noticeBar = getCookie('noticeBar');
-    
+    	
 	//alert('intro : ' + intro);
 	//alert('noticeBar : ' + noticeBar);
 
