@@ -2,19 +2,6 @@
   padding: 4rem 0;
   position: relative;
   background-color: #f9f9f9;
-  animation: fadeBackground 8s infinite alternate;
-}
-
-@keyframes fadeBackground {
-  0% {
-    background-color: #f9f9f9;
-  }
-  50% {
-    background-color: #e6e0ff;
-  }
-  100% {
-    background-color: #f0f0ff;
-  }
 }
 
 .titleWrap {
@@ -22,28 +9,12 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  animation: floatUp 3s infinite alternate;
   min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-10px);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  align-items: flex-start;
+  text-align: left;
 }
 
 .sectionTitle {
@@ -51,7 +22,6 @@
   line-height: 1;
   font-weight: 300;
   font-size: 1.2rem;
-  animation: fadeInOut 4s infinite;
 }
 
 .sectionDescription {
@@ -61,7 +31,7 @@
   font-size: 2rem;
   line-height: 1.4;
   position: relative;
-  animation: glowText 5s infinite alternate;
+  text-align: left;
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -73,59 +43,6 @@
 .hidden {
   opacity: 0;
   transform: translateY(20px);
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes glowText {
-  0% {
-    text-shadow: 0 0 0 rgba(124, 67, 244, 0);
-    color: #111;
-  }
-  50% {
-    text-shadow: 0 0 10px rgba(124, 67, 244, 0.5);
-    color: #333;
-  }
-  100% {
-    text-shadow: 0 0 0 rgba(124, 67, 244, 0);
-    color: #111;
-  }
-}
-
-.sectionDescription::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #7c43f4, transparent);
-  animation: lineGrow 4s infinite;
-}
-
-@keyframes lineGrow {
-  0% {
-    width: 0;
-    opacity: 0.5;
-  }
-  50% {
-    width: 100%;
-    opacity: 1;
-  }
-  100% {
-    width: 0;
-    opacity: 0.5;
-  }
 }
 
 /* 모바일 스타일 */

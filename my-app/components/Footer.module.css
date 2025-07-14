@@ -1,8 +1,22 @@
 .footer {
-  background-color: #242424;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #333333;
   padding: 60px 0 40px;
   font-size: 14px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+  will-change: opacity, transform;
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .layoutContainer {
@@ -38,7 +52,7 @@
   font-size: 28px;
   font-weight: bold;
   letter-spacing: 1px;
-  color: #fff;
+  color: #333333;
   text-decoration: none;
 }
 
@@ -50,7 +64,7 @@
 .footerAddress {
   font-style: normal;
   line-height: 1.5;
-  color: rgba(245, 245, 245, 0.7);
+  color: rgba(51, 51, 51, 0.7);
 }
 
 .footerLinkWrap {
@@ -62,7 +76,7 @@
   display: inline-block;
   margin-right: 15px;
   text-decoration: none;
-  color: #fff;
+  color: #333333;
   transition: color 0.3s ease;
 }
 
@@ -73,7 +87,7 @@
 .footerSitemap {
   background: transparent;
   border: none;
-  color: #fff;
+  color: #333333;
   cursor: pointer;
   padding: 0;
   font-size: 14px;
@@ -81,7 +95,7 @@
 }
 
 .footerSitemap:hover {
-  color: #ccc;
+  color: #666666;
 }
 
 .btn {
@@ -93,7 +107,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footerTerm {
@@ -102,18 +116,18 @@
 }
 
 .link {
-  color: rgba(245, 245, 245, 0.7);
+  color: rgba(51, 51, 51, 0.7);
   margin-right: 20px;
   transition: color 0.3s ease;
   text-decoration: none;
 }
 
 .link:hover {
-  color: #fff;
+  color: #000000;
 }
 
 .copyright {
-  color: rgba(245, 245, 245, 0.5);
+  color: rgba(51, 51, 51, 0.5);
   font-size: 12px;
 }
 

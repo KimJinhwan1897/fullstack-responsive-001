@@ -5,36 +5,32 @@ import styles from './CompanySection.module.css';
 
 export default function CompanySection() {
   const [visible, setVisible] = useState(true);
-  const messages = [
-    "우리의 첫걸음이 내일의 기준이 됩니다.",
-    "대한민국 최초에서 대한민국 1등이 되기까지",
-    "혁신을 통한 미래 가치 창출",
-    "기술로 세상을 바꾸는 기업"
-  ];
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const message = "우리의 첫걸음이 내일의 기준이 됩니다.\n대한민국 최초에서 대한민국 1등이 되기까지\n혁신을 통한 미래 가치 창출\n기술로 세상을 바꾸는 기업";
 
   useEffect(() => {
-    // 메시지 변경 효과
-    const messageInterval = setInterval(() => {
+    const fadeInterval = setInterval(() => {
       setVisible(false);
       setTimeout(() => {
-        setCurrentMessageIndex((prev) => (prev + 1) % messages.length);
         setVisible(true);
       }, 1000);
     }, 5000);
 
     return () => {
-      clearInterval(messageInterval);
+      clearInterval(fadeInterval);
     };
-  }, [messages.length]);
+  }, []);
 
   return (
     <section className={styles.companySection} id="company-section">
       <div className={styles.titleWrap}>
         <p className={styles.sectionTitle}></p>
-        <p className={`${styles.sectionDescription} ${visible ? styles.visible : styles.hidden}`}>
-          {messages[currentMessageIndex]}
-        </p>
+        <div className={`${styles.sectionDescription} ${visible ? styles.visible : styles.hidden}`}>
+          {message.split('\n').map((line, index) => (
+            <span key={index} style={{ display: 'block', marginBottom: '0.5rem' }}>
+              {line}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
