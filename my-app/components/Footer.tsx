@@ -8,21 +8,42 @@ import styles from './Footer.module.css';
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   
   useEffect(() => {
+    // 애니메이션이 한 번만 실행되도록 설정하는 옵션 (필요시 주석 해제)
+    // if (hasAnimated) return;
+    
+    let animationFrameId: number;
+    let timer: NodeJS.Timeout;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // 화면에 들어오면 isVisible을 true로 설정
+        // 애니메이션 프레임에 맞춰 상태 업데이트
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          // 프레임 맞추기
+          cancelAnimationFrame(animationFrameId);
+          clearTimeout(timer);
+          
+          animationFrameId = requestAnimationFrame(() => {
+            timer = setTimeout(() => {
+              setIsVisible(true);
+              setHasAnimated(true);
+            }, 100); // 약간의 지연으로 부드러운 시작
+          });
         } else {
-          // 화면에서 나가면 isVisible을 false로 설정
-          setIsVisible(false);
+          // 화면에서 벗어날 때도 부드럽게
+          cancelAnimationFrame(animationFrameId);
+          clearTimeout(timer);
+          
+          animationFrameId = requestAnimationFrame(() => {
+            setIsVisible(false);
+          });
         }
       },
       {
-        threshold: 0.3, // 30%가 보이면 효과 시작 (기존 10%에서 변경)
-        rootMargin: '-50px 0px' // 뷰포트 하단에서 50px 더 내려가야 감지 시작
+        threshold: [0.15, 0.3, 0.45], // 여러 지점에서 감지
+        rootMargin: '-30px 0px' // 뷰포트 하단에서 30px 내려가야 감지 시작
       }
     );
     
@@ -31,11 +52,14 @@ export default function Footer() {
     }
     
     return () => {
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(timer);
+      
       if (footerRef.current) {
         observer.unobserve(footerRef.current);
       }
     };
-  }, []);
+  }, [hasAnimated]);
   
   return (
     <footer 

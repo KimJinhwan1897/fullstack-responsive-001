@@ -4,19 +4,21 @@
   padding: 60px 0 40px;
   font-size: 14px;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.8s ease, transform 1.8s ease;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 1.8s cubic-bezier(0.23, 1, 0.32, 1), transform 1.8s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: opacity, transform;
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 
 .fadeIn {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .fadeOut {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translate3d(0, 30px, 0);
 }
 
 .layoutContainer {
