@@ -27,7 +27,15 @@ const firstRowPartners = [
 ];
 
 // 두 번째 줄도 동일한 순서로 사용
-const secondRowPartners = [...firstRowPartners]; // 첫 번째 줄과 동일한 파트너 배열
+const secondRowPartners = [
+  { id: 1, name: '파트너01', image: '/images/partners/partner07.jpg' },
+  { id: 2, name: '파트너02', image: '/images/partners/partner06.jpg' },
+  { id: 3, name: '파트너03', image: '/images/partners/partner05.jpg' },
+  { id: 4, name: '파트너04', image: '/images/partners/partner04.jpg' },
+  { id: 5, name: '파트너05', image: '/images/partners/partner03.jpg' },
+  { id: 6, name: '파트너06', image: '/images/partners/partner02.jpg' },
+  { id: 7, name: '파트너07', image: '/images/partners/partner01.jpg' },
+]; // 첫 번째 줄과 동일한 파트너 배열
 
 export default function PartnersMarquee() {
   const [visible, setVisible] = useState(false);
