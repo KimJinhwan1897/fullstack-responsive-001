@@ -51,6 +51,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  overflow: hidden;
 }
 
 .marquee {
@@ -58,18 +59,33 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+  padding: 1rem 0;
 }
 
 .marqueeGroup {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  min-width: 100%;
-  animation: marquee 40s linear infinite;
+  justify-content: space-between; /* 간격 일정하게 */
+  min-width: calc(100% + 120px); /* 더 넓게 설정 */
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+  gap: 30px; /* 고정된 간격 */
+}
+
+/* 복제된 마퀴 그룹과 원본 그룹 사이에 간격 추가 */
+.marqueeGroup + .marqueeGroup {
+  margin-left: 60px; /* 간격 조정 */
 }
 
 .reverse .marqueeGroup {
-  animation: marqueeReverse 35s linear infinite;
+  animation-name: marqueeReverse;
+  /* 첫 번째와 동일한 공간 설정 */
+  min-width: calc(100% + 120px);
+  gap: 30px;
+}
+
+.reverse .marqueeGroup + .marqueeGroup {
+  margin-left: 60px; /* 첫 번째와 동일한 간격 */
 }
 
 .paused .marqueeGroup {
@@ -81,7 +97,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - 60px)); /* 마퀴 그룹 사이 간격 고려 */
   }
 }
 
@@ -90,30 +106,48 @@
     transform: translateX(-100%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0); /* 마퀴 그룹 사이 간격 고려 */
   }
 }
 
 .partnerItem {
-  padding: 0 2rem;
+  flex: 0 0 auto;
   transition: transform 0.3s ease;
+  width: 160px; /* 고정 너비 */
+  margin: 0; /* 마진 제거하고 gap만 사용 */
 }
 
 .partnerItem:hover {
   transform: scale(1.1);
+  z-index: 5;
 }
 
 .partnerLogo {
-  height: 100px;
-  display: block;
-  filter: brightness(0.9) contrast(1.1);
-  transition: filter 0.3s ease, transform 0.3s ease;
+  height: 90px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-.partnerItem:hover .partnerLogo {
-  filter: brightness(1.05) contrast(1.1);
+.partnerImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(30%);
+}
+
+.partnerItem:hover .partnerImage {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
 .fadeIn {
@@ -157,16 +191,73 @@
   transform: translateX(-50%);
 }
 
+/* 미디어 쿼리 내에서도 두 row 동일하게 설정 */
+.mobileOnly {
+  display: none;
+}
+
+.desktopOnly {
+  display: block;
+}
+
 @media (max-width: 768px) {
+  .mobileOnly {
+    display: block;
+  }
+  
+  .desktopOnly {
+    display: none;
+  }
+  
   .sectionTitle {
     font-size: 2rem;
   }
   
   .partnerLogo {
-    height: 80px;
+    height: 70px;
+    width: 130px;
+  }
+  
+  .marqueeGroup {
+    gap: 20px;
+    min-width: calc(100% + 670px); /* 모바일에서도 공간 확보 */
+    justify-content: space-between;
+  }
+  
+  .marqueeGroup + .marqueeGroup {
+    margin-left: 40px; /* 모바일에서 그룹 간격 조정 */
   }
   
   .partnerItem {
-    padding: 0 1rem;
+    width: 130px; /* 모바일에서 아이템 너비 줄임 */
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - 40px)); /* 모바일에서 그룹 사이 간격 고려 */
+    }
+  }
+  
+  @keyframes marqueeReverse {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0); /* 모바일에서 그룹 사이 간격 고려 */
+    }
+  }
+
+  .reverse .marqueeGroup {
+    animation: marqueeReverse 35s linear infinite; /* 속도 동일하게 */
+    gap: 20px;
+    min-width: calc(100% + 670px);
+    justify-content: space-between;
+  }
+  
+  .reverse .marqueeGroup + .marqueeGroup {
+    margin-left: 40px; /* 모바일에서도 동일한 간격 */
   }
 } 

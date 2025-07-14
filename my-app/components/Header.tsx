@@ -16,9 +16,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(isScrolled);
       
       // 스크롤 중임을 표시
       setIsScrolling(true);
@@ -40,7 +38,7 @@ export default function Header() {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [scrolled]);
+  }, []); // 의존성 배열에서 scrolled 제거
 
   // 현재 상태에 따라 적절한 로고 선택
   const logoSrc = "/images/header_logo_none.png";

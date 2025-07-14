@@ -2,27 +2,37 @@
 
 import { useState, useEffect, useRef } from 'react';
 import styles from './PartnersMarquee.module.css';
-import Placeholder from './Placeholder';
+import Image from 'next/image';
 
-// 파트너 데이터
+// 파트너 데이터 - 실제 이미지로 교체
 const partners = [
-  { id: 1, name: '삼성전자', logo: '/images/partner-samsung.png' },
-  { id: 2, name: '현대자동차', logo: '/images/partner-hyundai.png' },
-  { id: 3, name: 'LG', logo: '/images/partner-lg.png' },
-  { id: 4, name: 'SK', logo: '/images/partner-sk.png' },
-  { id: 5, name: 'KT', logo: '/images/partner-kt.png' },
-  { id: 6, name: '신한은행', logo: '/images/partner-shinhan.png' },
-  { id: 7, name: '네이버', logo: '/images/partner-naver.png' },
-  { id: 8, name: '카카오', logo: '/images/partner-kakao.png' },
-  { id: 9, name: '포스코', logo: '/images/partner-posco.png' },
-  { id: 10, name: '한국전력', logo: '/images/partner-kepco.png' }
+  { id: 1, name: '파트너01', image: '/images/partners/partner01.jpg' },
+  { id: 2, name: '파트너02', image: '/images/partners/partner02.jpg' },
+  { id: 3, name: '파트너03', image: '/images/partners/partner03.jpg' },
+  { id: 4, name: '파트너04', image: '/images/partners/partner04.jpg' },
+  { id: 5, name: '파트너05', image: '/images/partners/partner05.jpg' },
+  { id: 6, name: '파트너06', image: '/images/partners/partner06.jpg' },
+  { id: 7, name: '파트너07', image: '/images/partners/partner07.jpg' },
 ];
+
+// 첫 번째 줄과 두 번째 줄에 다르게 배치할 파트너 배열
+const firstRowPartners = [
+  { id: 1, name: '파트너01', image: '/images/partners/partner01.jpg' },
+  { id: 2, name: '파트너02', image: '/images/partners/partner02.jpg' },
+  { id: 3, name: '파트너03', image: '/images/partners/partner03.jpg' },
+  { id: 4, name: '파트너04', image: '/images/partners/partner04.jpg' },
+  { id: 5, name: '파트너05', image: '/images/partners/partner05.jpg' },
+  { id: 6, name: '파트너06', image: '/images/partners/partner06.jpg' },
+  { id: 7, name: '파트너07', image: '/images/partners/partner07.jpg' },
+];
+
+// 두 번째 줄도 동일한 순서로 사용
+const secondRowPartners = [...firstRowPartners]; // 첫 번째 줄과 동일한 파트너 배열
 
 export default function PartnersMarquee() {
   const [visible, setVisible] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const marqueeRef1 = useRef<HTMLDivElement>(null);
-  const marqueeRef2 = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   // 스크롤 감지로 애니메이션 효과 적용
   useEffect(() => {
@@ -36,29 +46,30 @@ export default function PartnersMarquee() {
       { threshold: 0.1 }
     );
 
-    const target = document.getElementById('partners-marquee-section');
-    if (target) observer.observe(target);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      if (target) observer.unobserve(target);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
   }, []);
 
-  // 로고 색상 배열
-  const logoColors = [
-    '#4f46e5', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444',
-    '#8b5cf6', '#ec4899', '#f97316', '#14b8a6', '#6366f1'
-  ];
-
   return (
-    <section id="partners-marquee-section" className={styles.partnersMarqueeSection}>
+    <section id="partners-marquee-section" ref={sectionRef} className={styles.partnersMarqueeSection}>
       <div className={styles.container}>
         <div className={`${styles.sectionHeader} ${visible ? styles.fadeIn : ''}`}>
           <div className={styles.headerLine}></div>
           <h2 className={styles.sectionTitle}>신뢰할 수 있는 파트너사</h2>
           <p className={styles.sectionSubtitle}>
-            OTS Technology는 다양한 산업 분야의 기업들과 협력하여 
-            비즈니스 혁신을 이끌고 있습니다
+            <span className={styles.desktopOnly}>
+              OTS Technology는 다양한 산업 분야의 기업들과 협력하여 <br />비즈니스 혁신을 이끌고 있습니다
+            </span>
+            <span className={styles.mobileOnly}>
+              OTS Technology는 다양한 산업 분야의<br /> 기업들과 협력하여 비즈니스 혁신을 <br />이끌고 있습니다
+            </span>
           </p>
         </div>
         
@@ -69,34 +80,38 @@ export default function PartnersMarquee() {
         >
           {/* 첫 번째 마퀴 (왼쪽에서 오른쪽) */}
           <div 
-            className={`${styles.marquee} ${isPaused ? styles.paused : ''}`} 
-            ref={marqueeRef1}
+            className={`${styles.marquee} ${isPaused ? styles.paused : ''}`}
           >
+            {/* 첫 번째 그룹 - 다른 순서로 배치 */}
             <div className={styles.marqueeGroup}>
-              {partners.slice(0, 5).map((partner, index) => (
-                <div key={partner.id} className={styles.partnerItem}>
-                  <Placeholder
-                    text={partner.name}
-                    width={180}
-                    height={100}
-                    bgColor={logoColors[index % logoColors.length]}
-                    textColor="white"
-                    className={styles.partnerLogo}
-                  />
+              {firstRowPartners.map((partner) => (
+                <div key={`row1-a-${partner.id}`} className={styles.partnerItem}>
+                  <div className={styles.partnerLogo}>
+                    <Image 
+                      src={partner.image} 
+                      alt={partner.name}
+                      width={160}
+                      height={90}
+                      className={styles.partnerImage}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
+            
+            {/* 복제 그룹 */}
             <div className={styles.marqueeGroup}>
-              {partners.slice(0, 5).map((partner, index) => (
-                <div key={`clone-${partner.id}`} className={styles.partnerItem}>
-                  <Placeholder
-                    text={partner.name}
-                    width={180}
-                    height={100}
-                    bgColor={logoColors[index % logoColors.length]}
-                    textColor="white"
-                    className={styles.partnerLogo}
-                  />
+              {firstRowPartners.map((partner) => (
+                <div key={`row1-b-${partner.id}`} className={styles.partnerItem}>
+                  <div className={styles.partnerLogo}>
+                    <Image 
+                      src={partner.image} 
+                      alt={partner.name}
+                      width={160}
+                      height={90}
+                      className={styles.partnerImage}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -105,33 +120,37 @@ export default function PartnersMarquee() {
           {/* 두 번째 마퀴 (오른쪽에서 왼쪽) */}
           <div 
             className={`${styles.marquee} ${styles.reverse} ${isPaused ? styles.paused : ''}`} 
-            ref={marqueeRef2}
           >
+            {/* 두 번째 그룹 - 같은 순서로 배치 */}
             <div className={styles.marqueeGroup}>
-              {partners.slice(5, 10).map((partner, index) => (
-                <div key={partner.id} className={styles.partnerItem}>
-                  <Placeholder
-                    text={partner.name}
-                    width={180}
-                    height={100}
-                    bgColor={logoColors[(index + 5) % logoColors.length]}
-                    textColor="white"
-                    className={styles.partnerLogo}
-                  />
+              {secondRowPartners.map((partner) => (
+                <div key={`row2-a-${partner.id}`} className={styles.partnerItem}>
+                  <div className={styles.partnerLogo}>
+                    <Image 
+                      src={partner.image} 
+                      alt={partner.name}
+                      width={160}
+                      height={90}
+                      className={styles.partnerImage}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
+            
+            {/* 복제 그룹 */}
             <div className={styles.marqueeGroup}>
-              {partners.slice(5, 10).map((partner, index) => (
-                <div key={`clone-${partner.id}`} className={styles.partnerItem}>
-                  <Placeholder
-                    text={partner.name}
-                    width={180}
-                    height={100}
-                    bgColor={logoColors[(index + 5) % logoColors.length]}
-                    textColor="white"
-                    className={styles.partnerLogo}
-                  />
+              {secondRowPartners.map((partner) => (
+                <div key={`row2-b-${partner.id}`} className={styles.partnerItem}>
+                  <div className={styles.partnerLogo}>
+                    <Image 
+                      src={partner.image} 
+                      alt={partner.name}
+                      width={160}
+                      height={90}
+                      className={styles.partnerImage}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
